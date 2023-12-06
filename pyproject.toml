@@ -18,6 +18,10 @@ django-celery-beat = "^2.5.0"
 django-cors-headers = "^4.3.1"
 setuptools = "^69.0.2"
 black = {extras = ["d"], version = "^23.11.0"}
+django-filter = "^23.5"
+djangorestframework-simplejwt = "^5.3.1"
+requests = "^2.31.0"
+drf-yasg = "^1.21.7"
 
 
 [build-system]
