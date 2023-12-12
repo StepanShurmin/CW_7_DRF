@@ -19,29 +19,39 @@ class HabitCreateApiView(generics.CreateAPIView):
 
 class HabitListApiView(generics.ListAPIView):
     serializer_class = HabitSerializer
-    queryset = Habit.objects.all()
     pagination_class = HabitPaginator
     permission_classes = [IsAuthenticated, IsUser]
+
+    def get_queryset(self):
+        return Habit.objects.filter(user=self.request.user)
 
 
 class HabitPublicListApiView(generics.ListAPIView):
     serializer_class = HabitSerializer
-    queryset = Habit.objects.filter(is_public=True)
     pagination_class = HabitPaginator
+
+    def get_queryset(self):
+        return Habit.objects.filter(is_public=True)
 
 
 class HabitDetailApiView(generics.RetrieveAPIView):
     serializer_class = HabitSerializer
-    queryset = Habit.objects.all()
     permission_classes = [IsAuthenticated, IsUser]
+
+    def get_queryset(self):
+        return Habit.objects.filter(user=self.request.user)
 
 
 class HabitUpdateApiView(generics.UpdateAPIView):
     serializer_class = HabitSerializer
-    queryset = Habit.objects.all()
     permission_classes = [IsAuthenticated, IsUser]
+
+    def get_queryset(self):
+        return Habit.objects.filter(user=self.request.user)
 
 
 class HabitDestroyApiView(generics.DestroyAPIView):
-    queryset = Habit.objects.all()
     permission_classes = [IsAuthenticated, IsUser]
+
+    def get_queryset(self):
+        return Habit.objects.filter(user=self.request.user)
