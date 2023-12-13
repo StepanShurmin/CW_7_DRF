@@ -20,8 +20,7 @@ class ExecutionTimeValidator:
 
     def __call__(self, value):
         execution_time = dict(value).get(self.field)
-
-        if execution_time > 120:
+        if isinstance(execution_time, int) and execution_time > 120:
             raise ValidationError(f"Время выполнения должно быть не больше 120 секунд.")
 
 
@@ -57,5 +56,5 @@ class ExecutionPeriodicityValidator:
 
     def __call__(self, value):
         periodicity = dict(value).get(self.field)
-        if periodicity > 7:
+        if isinstance(periodicity, int) and periodicity > 7:
             raise ValidationError("Нельзя выполнять привычку реже, чем 1 раз в 7 дней.")

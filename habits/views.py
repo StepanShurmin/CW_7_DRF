@@ -23,7 +23,7 @@ class HabitListApiView(generics.ListAPIView):
     permission_classes = [IsAuthenticated, IsUser]
 
     def get_queryset(self):
-        return Habit.objects.filter(user=self.request.user)
+        return Habit.objects.filter(user=self.request.user).order_by("id")
 
 
 class HabitPublicListApiView(generics.ListAPIView):
@@ -31,7 +31,7 @@ class HabitPublicListApiView(generics.ListAPIView):
     pagination_class = HabitPaginator
 
     def get_queryset(self):
-        return Habit.objects.filter(is_public=True)
+        return Habit.objects.filter(is_public=True).order_by("id")
 
 
 class HabitDetailApiView(generics.RetrieveAPIView):
